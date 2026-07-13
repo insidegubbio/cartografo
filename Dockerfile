@@ -20,7 +20,16 @@ RUN curl -fL \
 
 RUN npm install --prefix /app fontnik
 
-RUN pip install fastapi uvicorn httpx pmtiles --no-cache-dir
+RUN pip install fastapi uvicorn httpx --no-cache-dir
+
+# install go-pmtiles CLI
+RUN curl -fL \
+    "https://github.com/protomaps/go-pmtiles/releases/download/v1.31.0/go-pmtiles_1.31.0_Linux_x86_64.tar.gz" \
+    -o /tmp/go-pmtiles.tar.gz \
+    && tar -xzf /tmp/go-pmtiles.tar.gz -C /tmp \
+    && mv /tmp/pmtiles /usr/local/bin/ \
+    && rm /tmp/go-pmtiles.tar.gz \
+    && pmtiles --version
 
 # download and convert satoshi
 RUN mkdir -p /app/fonts \
