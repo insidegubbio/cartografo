@@ -32,9 +32,9 @@ jobs:
           api.upload_folder(
             folder_path=".",
               repo_id="gablilli/cartografo",
-                    repo_type="space",
-                    ignore_patterns=[".git", ".github", "__pycache__", "*.pyc", ".gitattributes"],
-                    commit_message=os.environ.get("COMMIT_MSG", "sync from github")
-                )
+              repo_type="space",
+              ignore_patterns=[".git", ".github", "__pycache__", "*.pyc", ".gitattributes"],
+              commit_message=os.environ.get("COMMIT_MSG", "sync from github")
+            )
             print("sync completato")
             PYEOF
