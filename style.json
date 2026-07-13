@@ -4,12 +4,12 @@
   "sources": {
     "protomaps": {
       "type": "vector",
-      "url": "pmtiles://https://gablilli-cartografo.hf.space/italy.pmtiles",
+      "url": "pmtiles://https://cartografo.insidegubbio.com/italy.pmtiles",
       "attribution": "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a>"
     }
   },
-  "sprite": "https://gablilli-cartografo.hf.space/sprites/sprite",
-  "glyphs": "https://gablilli-cartografo.hf.space/fonts/{fontstack}/{range}.pbf",
+  "sprite": "https://cartografo.insidegubbio.com/sprites/sprite",
+  "glyphs": "https://cartografo.insidegubbio.com/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "Background",
