@@ -51,6 +51,13 @@ async def get_style():
         headers={"Access-Control-Allow-Origin": "*"}
     )
 
+@app.get("/debug/fonts")
+async def list_fonts():
+    fonts_dir = BASE / "fonts"
+    if not fonts_dir.exists():
+        return {"error": "fonts dir not found"}
+    return {"fonts": sorted([d.name for d in fonts_dir.iterdir() if d.is_dir()])}
+    
 @app.get("/tiles/{path:path}")
 async def proxy_tiles(path: str):
     async with httpx.AsyncClient() as client:
