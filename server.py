@@ -3,7 +3,7 @@ import os
 import subprocess
 import json
 from pathlib import Path
-from fastapi import FastAPI, Response, HTTPException
+from fastapi import FastAPI, Response, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import httpx
@@ -15,6 +15,7 @@ app.add_middleware(
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Content-Range", "Accept-Ranges", "Content-Length"],
 )
 
 BASE = Path("/app")
@@ -69,28 +70,58 @@ async def proxy_tiles(path: str, request_params: str = ""):
         except Exception as e:
             raise HTTPException(status_code=503, detail=str(e))
 
-# TileJSON pmtiles
+# PMTiles, range request support
 @app.get("/italy.pmtiles")
-async def serve_pmtiles():
+async def serve_pmtiles(request: Request):
     pmtiles_path = BASE / "italy.pmtiles"
     if not pmtiles_path.exists():
         raise HTTPException(status_code=404, detail="Tiles not ready")
-    content = pmtiles_path.read_bytes()
-    return Response(
-        content=content,
-        media_type="application/octet-stream",
-        headers={
-            "Access-Control-Allow-Origin": "*",
-            "Accept-Ranges": "bytes",
-        }
-    )
+    
+    file_size = pmtiles_path.stat().st_size
+    range_header = request.headers.get("Range")
+    
+    if range_header:
+        range_val = range_header.replace("bytes=", "")
+        parts = range_val.split("-")
+        start = int(parts[0])
+        end = int(parts[1]) if parts[1] else file_size - 1
+        end = min(end, file_size - 1)
+        length = end - start + 1
+        
+        with open(pmtiles_path, "rb") as f:
+            f.seek(start)
+            chunk = f.read(length)
+        
+        return Response(
+            content=chunk,
+            status_code=206,
+            media_type="application/octet-stream",
+            headers={
+                "Content-Range": f"bytes {start}-{end}/{file_size}",
+                "Accept-Ranges": "bytes",
+                "Content-Length": str(length),
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Expose-Headers": "Content-Range, Accept-Ranges, Content-Length",
+            }
+        )
+    else:
+        return Response(
+            content=b"",
+            status_code=200,
+            media_type="application/octet-stream",
+            headers={
+                "Accept-Ranges": "bytes",
+                "Content-Length": str(file_size),
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Expose-Headers": "Content-Range, Accept-Ranges, Content-Length",
+            }
+        )
 
 # font
 @app.get("/fonts/{fontstack}/{range}.pbf")
 async def get_font(fontstack: str, range: str):
     font_path = BASE / "fonts" / fontstack / f"{range}.pbf"
     if not font_path.exists():
-        # fallback noto sans
         font_path = BASE / "fonts" / "Noto Sans Regular" / f"{range}.pbf"
     if not font_path.exists():
         raise HTTPException(status_code=404, detail=f"Font not found: {fontstack}/{range}")
