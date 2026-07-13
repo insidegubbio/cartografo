@@ -31,6 +31,17 @@
       }
     },
     {
+      "id": "Land edge bleed",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "earth",
+      "paint": {
+        "line-color": "hsla(38, 45%, 55%, 0.35)",
+        "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 3, 10, 6, 16, 10],
+        "line-width": ["interpolate", ["linear"], ["zoom"], 4, 2, 10, 5, 16, 9]
+      }
+    },
+    {
       "id": "Water",
       "type": "fill",
       "source": "protomaps",
@@ -78,6 +89,18 @@
       }
     },
     {
+      "id": "Wood edge bleed",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "landuse",
+      "filter": ["in", "kind", "wood", "forest", "park", "grass", "meadow"],
+      "paint": {
+        "line-color": "hsla(95, 45%, 35%, 0.3)",
+        "line-blur": ["interpolate", ["linear"], ["zoom"], 6, 3, 12, 6, 16, 9],
+        "line-width": ["interpolate", ["linear"], ["zoom"], 6, 1.5, 12, 4, 16, 7]
+      }
+    },
+    {
       "id": "Grass",
       "type": "fill",
       "source": "protomaps",
@@ -105,6 +128,20 @@
       }
     },
     {
+      "id": "Residential edge bleed",
+      "type": "line",
+      "source": "protomaps",
+      "source-layer": "landuse",
+      "minzoom": 6,
+      "maxzoom": 13,
+      "filter": ["in", "kind", "residential", "urban"],
+      "paint": {
+        "line-color": "hsla(30, 40%, 45%, 0.25)",
+        "line-blur": ["interpolate", ["linear"], ["zoom"], 6, 2, 13, 5],
+        "line-width": ["interpolate", ["linear"], ["zoom"], 6, 1, 13, 3]
+      }
+    },
+    {
       "id": "Sand",
       "type": "fill",
       "source": "protomaps",
@@ -128,6 +165,14 @@
         },
         "fill-pattern": "red",
         "fill-opacity": 1
+      }
+    },
+    {
+      "id": "Paper grain overlay",
+      "type": "background",
+      "paint": {
+        "background-pattern": "grain",
+        "background-opacity": 0.28
       }
     },
     {
