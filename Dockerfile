@@ -57,9 +57,9 @@ RUN mkdir -p /app/fonts \
     && rm -rf /tmp/satoshi
 
 # download and convert noto sans
-RUN mkdir -p /app/fonts/noto-sans \
-    && curl -fL "https://github.com/openmaptiles/fonts/raw/master/noto-sans/NotoSans-Regular.ttf" \
+RUN curl -fL "https://github.com/openmaptiles/fonts/raw/master/noto-sans/NotoSans-Regular.ttf" \
         -o /tmp/NotoSans-Regular.ttf \
+    && mkdir -p /app/fonts/noto-sans \
     && node -e " \
         const fontnik = require('/app/node_modules/fontnik'); \
         const fs = require('fs'); \
@@ -74,13 +74,8 @@ RUN mkdir -p /app/fonts/noto-sans \
             }); \
         } \
     " \
-    && rm /tmp/NotoSans-Regular.ttf \
-    && node -e " \
-        const fontnik = require('/app/node_modules/fontnik'); \
-        const fs = require('fs'); \
-        const font = fs.readFileSync('/tmp/NotoSans-Regular.ttf'); \
-    " || true
-
+    && rm /tmp/NotoSans-Regular.ttf
+    
 # copy sprite & styles
 COPY sprites/ /app/sprites/
 COPY style.json /app/style.json
