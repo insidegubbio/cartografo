@@ -56,16 +56,30 @@ RUN mkdir -p /app/fonts \
     done \
     && rm -rf /tmp/satoshi
 
-# download noto as a fallback
-RUN curl -fL https://github.com/openmaptiles/fonts/archive/refs/heads/master.zip -o /tmp/fonts.zip \
-    && unzip -q /tmp/fonts.zip -d /tmp/fonts_raw && mv /tmp/fonts_raw/fonts-master /tmp/fonts_raw/fonts \
-    && rm /tmp/fonts.zip \
-    && for dir in /tmp/fonts_raw/fonts/*/; do \
-        name=$(basename "$dir"); \
-        mkdir -p "/app/fonts/$name"; \
-        find "$dir" -name "*.pbf" -exec cp {} "/app/fonts/$name/" \; ; \
-    done \
-    && rm -rf /tmp/fonts_raw
+# download and convert noto sans
+RUN mkdir -p /app/fonts/noto-sans \
+    && curl -fL "https://github.com/openmaptiles/fonts/raw/master/noto-sans/NotoSans-Regular.ttf" \
+        -o /tmp/NotoSans-Regular.ttf \
+    && node -e " \
+        const fontnik = require('/app/node_modules/fontnik'); \
+        const fs = require('fs'); \
+        const font = fs.readFileSync('/tmp/NotoSans-Regular.ttf'); \
+        let done = 0; \
+        const total = Math.ceil(65536/256); \
+        for (let i = 0; i < 65536; i += 256) { \
+            const end = Math.min(i+255, 65535); \
+            fontnik.range({font, start: i, end}, (err, data) => { \
+                if (!err && data) fs.writeFileSync('/app/fonts/noto-sans/' + i + '-' + end + '.pbf', data); \
+                if (++done === total) process.exit(0); \
+            }); \
+        } \
+    " \
+    && rm /tmp/NotoSans-Regular.ttf \
+    && node -e " \
+        const fontnik = require('/app/node_modules/fontnik'); \
+        const fs = require('fs'); \
+        const font = fs.readFileSync('/tmp/NotoSans-Regular.ttf'); \
+    " || true
 
 # copy sprite & styles
 COPY sprites/ /app/sprites/
