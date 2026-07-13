@@ -18,7 +18,8 @@ RUN curl -fL \
     && rm /tmp/martin.tar.gz \
     && martin --version
 
-RUN npm install -g pmtiles fontnik
+RUN npm install -g pmtiles \
+    && npm install --prefix /app fontnik
 
 RUN pip install fastapi uvicorn httpx --no-cache-dir
 
@@ -31,7 +32,7 @@ RUN mkdir -p /app/fonts \
         fontname=$(basename "$ttf" .ttf | sed 's/Satoshi-/Satoshi /'); \
         mkdir -p "/app/fonts/$fontname"; \
         node -e " \
-            const fontnik = require('fontnik'); \
+            const fontnik = require('/app/node_modules/fontnik'); \
             const fs = require('fs'); \
             const font = fs.readFileSync('$ttf'); \
             let done = 0; \
