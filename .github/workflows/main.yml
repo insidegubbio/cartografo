@@ -14,27 +14,26 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true
 
-      - name: setup git lfs
-        run: |
-          git lfs install
-          git lfs track "*.png"
-          git lfs track "*.pbf"
-          git lfs track "*.pmtiles"
-          git lfs track "*.zip"
+      - name: install huggingface cli
+        run: pip install huggingface_hub hf_xet
 
-      - name: push to huggingface
+      - name: push to huggingface space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git config --global user.email "gabriele@insidegubbio.com"
-          git config --global user.name "insidegubbio ci"
-
-          git config --global lfs.url "https://huggingface.co/spaces/gablilli/cartografo.git/info/lfs"
-
-          git remote add huggingface https://gablilli:${HF_TOKEN}@huggingface.co/spaces/gablilli/cartografo
-
-          GIT_LFS_SKIP_SMUDGE=1 git lfs push huggingface --all
-
-          git push huggingface main --force
+          python3 << 'PYEOF'
+          import os
+          from huggingface_hub import HfApi
+          
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          
+          api.upload_folder(
+              folder_path=".",
+              repo_id="gablilli/cartografo",
+              repo_type="space",
+              ignore_patterns=[".git", ".github", "__pycache__", "*.pyc", ".gitattributes"],
+              commit_message="sync from github"
+          )
+          print("sync completato")
+          PYEOF
