@@ -10,10 +10,15 @@ RUN apt-get update && apt-get install -y \
     npm \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://github.com/maplibre/martin/releases/download/v0.14.4/martin-x86_64-unknown-linux-gnu.tar.gz \
-    && tar -xzf martin-x86_64-unknown-linux-gnu.tar.gz \
-    && mv martin /usr/local/bin/ \
-    && rm martin-x86_64-unknown-linux-gnu.tar.gz
+RUN MARTIN_VERSION=$(curl -s https://raw.githubusercontent.com/maplibre/martin/main/Cargo.toml | grep '^version' | head -1 | cut -d'"' -f2) && \
+    echo "Martin version: $MARTIN_VERSION" && \
+    curl -L \
+    "https://github.com/maplibre/martin/releases/download/v${MARTIN_VERSION}/martin-x86_64-unknown-linux-gnu.tar.gz" \
+    -o /tmp/martin.tar.gz && \
+    tar -xzf /tmp/martin.tar.gz -C /tmp && \
+    mv /tmp/martin /usr/local/bin/ && \
+    rm /tmp/martin.tar.gz && \
+    martin --version
 
 RUN npm install -g pmtiles @mapbox/fontnik
 
