@@ -29,7 +29,7 @@ RUN curl -fL \
     && tar -xzf /tmp/go-pmtiles.tar.gz -C /tmp \
     && mv /tmp/pmtiles /usr/local/bin/ \
     && rm /tmp/go-pmtiles.tar.gz \
-    && pmtiles --version
+    && pmtiles version
 
 # download and convert satoshi
 RUN mkdir -p /app/fonts \
