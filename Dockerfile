@@ -18,7 +18,7 @@ RUN curl -fL \
     && rm /tmp/martin.tar.gz \
     && martin --version
 
-RUN npm install -g pmtiles \
+RUN npm install --prefix /app pmtiles \
     && npm install --prefix /app fontnik
 
 RUN pip install fastapi uvicorn httpx --no-cache-dir
@@ -50,16 +50,16 @@ RUN mkdir -p /app/fonts \
 
 # download noto as a fallback
 RUN curl -fL https://github.com/openmaptiles/fonts/archive/refs/heads/master.zip -o /tmp/fonts.zip \
-    && unzip -q /tmp/fonts.zip -d /tmp/fonts_raw \
+    && unzip -q /tmp/fonts.zip -d /tmp/fonts_raw && mv /tmp/fonts_raw/fonts-master /tmp/fonts_raw/fonts \
     && rm /tmp/fonts.zip \
-    && for dir in /tmp/fonts_raw/*/; do \
+    && for dir in /tmp/fonts_raw/fonts/*/; do \
         name=$(basename "$dir"); \
         mkdir -p "/app/fonts/$name"; \
         find "$dir" -name "*.pbf" -exec cp {} "/app/fonts/$name/" \; ; \
     done \
     && rm -rf /tmp/fonts_raw
 
-# copy sprite & style
+#copy sprite & style
 COPY sprites/ /app/sprites/
 COPY style.json /app/style.json
 COPY server.py /app/server.py
