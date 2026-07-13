@@ -21,19 +21,20 @@ jobs:
       - name: push to huggingface space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           python3 << 'PYEOF'
           import os
           from huggingface_hub import HfApi
-          
+                
           api = HfApi(token=os.environ["HF_TOKEN"])
-          
+                
           api.upload_folder(
-              folder_path=".",
+            folder_path=".",
               repo_id="gablilli/cartografo",
-              repo_type="space",
-              ignore_patterns=[".git", ".github", "__pycache__", "*.pyc", ".gitattributes"],
-              commit_message="sync from github"
-          )
-          print("sync completato")
-          PYEOF
+                    repo_type="space",
+                    ignore_patterns=[".git", ".github", "__pycache__", "*.pyc", ".gitattributes"],
+                    commit_message=os.environ.get("COMMIT_MSG", "sync from github")
+                )
+            print("sync completato")
+            PYEOF
