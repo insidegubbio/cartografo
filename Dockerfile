@@ -31,7 +31,7 @@ RUN mkdir -p /app/fonts && \
     for ttf in $(find /tmp/satoshi -name "*.ttf"); do \
         fontname=$(basename "$ttf" .ttf | sed 's/Satoshi-/Satoshi /'); \
         mkdir -p "/app/fonts/$fontname"; \
-        node /app/convert_satoshi.js "$ttf" "/app/fonts/$fontname"; \
+        node /app/convert.js "$ttf" "/app/fonts/$fontname"; \
     done && \
     rm -rf /tmp/satoshi
 
