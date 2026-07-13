@@ -55,14 +55,14 @@ async def get_style():
 async def proxy_tiles(path: str):
     async with httpx.AsyncClient() as client:
         try:
-            r = await client.get(f"http://127.0.0.1:{MARTIN_PORT}/{path}")
+            r = await client.get(
+                f"http://127.0.0.1:{MARTIN_PORT}/{path}",
+                headers={"Accept-Encoding": "identity"}
+            )
             return Response(
                 content=r.content,
                 media_type=r.headers.get("content-type", "application/x-protobuf"),
-                headers={
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Encoding": r.headers.get("content-encoding", ""),
-                }
+                headers={"Access-Control-Allow-Origin": "*"}
             )
         except Exception as e:
             raise HTTPException(status_code=503, detail=str(e))
@@ -117,7 +117,7 @@ async def serve_pmtiles(request: Request):
 async def get_font(fontstack: str, range: str):
     font_path = BASE / "fonts" / fontstack / f"{range}.pbf"
     if not font_path.exists():
-        font_path = BASE / "fonts" / "Klokantech Noto Sans Regular" / f"{range}.pbf"
+        font_path = BASE / "fonts" / "noto-sans" / f"{range}.pbf"
     if not font_path.exists():
         raise HTTPException(status_code=404, detail=f"Font not found: {fontstack}/{range}")
     return Response(
