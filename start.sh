@@ -13,7 +13,7 @@ fi
 
 echo "Build: $LATEST"
 
-node /app/node_modules/.bin/pmtiles extract \
+/app/node_modules/.bin/pmtiles extract \
   "https://build.protomaps.com/${LATEST}.pmtiles" \
   /app/italy.pmtiles \
   --bbox=6.6272658,35.2889616,18.7844746,47.0921462
