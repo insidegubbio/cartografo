@@ -4,7 +4,7 @@
   "sources": {
     "protomaps": {
       "type": "vector",
-      "url": "pmtiles://https://cartografo.insidegubbio.com/italy.pmtiles",
+      "url": "https://cartografo.insidegubbio.com/tiles/italy",
       "attribution": "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a>"
     }
   },
