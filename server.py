@@ -50,7 +50,7 @@ async def get_style():
         media_type="application/json",
         headers={"Access-Control-Allow-Origin": "*"}
     )
-    
+
 @app.get("/tiles/{path:path}")
 async def proxy_tiles(path: str):
     async with httpx.AsyncClient() as client:
@@ -117,7 +117,7 @@ async def serve_pmtiles(request: Request):
 async def get_font(fontstack: str, range: str):
     font_path = BASE / "fonts" / fontstack / f"{range}.pbf"
     if not font_path.exists():
-        font_path = BASE / "fonts" / "noto-sans" / f"{range}.pbf"
+        font_path = BASE / "fonts" / "Klokantech Noto Sans Regular" / f"{range}.pbf"
     if not font_path.exists():
         raise HTTPException(status_code=404, detail=f"Font not found: {fontstack}/{range}")
     return Response(
