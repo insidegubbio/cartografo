@@ -20,8 +20,8 @@ RUN npm install -g pmtiles @mapbox/fontnik
 RUN pip install fastapi uvicorn httpx --no-cache-dir
 
 # use helper scripts
-COPY copy_fonts.py /app/copy_fonts.py
-COPY convert_satoshi.js /app/convert_satoshi.js
+COPY copy_fonts.py /app/convert.py
+COPY convert_satoshi.js /app/convert.js
 
 # downlooad and convert satoshi
 RUN mkdir -p /app/fonts && \
