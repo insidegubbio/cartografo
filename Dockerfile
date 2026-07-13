@@ -18,10 +18,9 @@ RUN curl -fL \
     && rm /tmp/martin.tar.gz \
     && martin --version
 
-RUN npm install --prefix /app pmtiles \
-    && npm install --prefix /app fontnik
+RUN npm install --prefix /app fontnik
 
-RUN pip install fastapi uvicorn httpx --no-cache-dir
+RUN pip install fastapi uvicorn httpx pmtiles --no-cache-dir
 
 # download and convert satoshi
 RUN mkdir -p /app/fonts \
@@ -59,7 +58,7 @@ RUN curl -fL https://github.com/openmaptiles/fonts/archive/refs/heads/master.zip
     done \
     && rm -rf /tmp/fonts_raw
 
-#copy sprite & style
+# copy sprite & styles
 COPY sprites/ /app/sprites/
 COPY style.json /app/style.json
 COPY server.py /app/server.py
