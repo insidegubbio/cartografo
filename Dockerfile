@@ -49,7 +49,7 @@ RUN mkdir -p /app/fonts \
     && rm -rf /tmp/satoshi
 
 # download noto as a fallback
-RUN wget -q https://github.com/openmaptiles/fonts/releases/download/v4.0/v4.0.zip -O /tmp/fonts.zip \
+RUN curl -fL https://github.com/openmaptiles/fonts/archive/refs/heads/master.zip -o /tmp/fonts.zip \
     && unzip -q /tmp/fonts.zip -d /tmp/fonts_raw \
     && rm /tmp/fonts.zip \
     && for dir in /tmp/fonts_raw/*/; do \
