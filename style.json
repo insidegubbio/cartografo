@@ -67,8 +67,9 @@
       "id": "River",
       "type": "line",
       "source": "protomaps",
-      "source-layer": "waterway",
+      "source-layer": "water",
       "minzoom": 3,
+      "filter": ["in", "kind_detail", "river", "stream", "canal", "riverbank"],
       "paint": {
         "line-blur": ["interpolate", ["linear"], ["zoom"], 3, 2, 18, 4],
         "line-color": "hsl(205,56%,73%)",
@@ -202,7 +203,7 @@
       "id": "Railway",
       "type": "line",
       "source": "protomaps",
-      "source-layer": "transit",
+      "source-layer": "roads",
       "minzoom": 10,
       "filter": ["==", "kind", "rail"],
       "paint": {
