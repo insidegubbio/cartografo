@@ -55,10 +55,7 @@ async def get_style():
 async def proxy_tiles(path: str):
     async with httpx.AsyncClient() as client:
         try:
-            r = await client.get(
-                f"http://127.0.0.1:{MARTIN_PORT}/{path}",
-                headers={"Accept-Encoding": "identity"}
-            )
+            r = await client.get(f"http://127.0.0.1:{MARTIN_PORT}/{path}")
             return Response(
                 content=r.content,
                 media_type=r.headers.get("content-type", "application/x-protobuf"),
