@@ -2,7 +2,7 @@
 var worker_default = {
   async fetch(request) {
     const url = new URL(request.url);
-    const target = 'https://gablilli-araldo.hf.space'; // hf instance
+    const target = 'https://gablilli-cartografo.hf.space'; // hf instance
     const targetUrl = target + url.pathname + url.search;
 
     const origin = request.headers.get('Origin');
