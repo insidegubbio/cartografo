@@ -1,12 +1,3 @@
----
-title: cartografo
-emoji: 🗺️
-colorFrom: blue
-colorTo: green
-sdk: docker
-pinned: false
----
-
 # cartografo
 
 tile server per [condottiero](https://condottiero.insidegubbio.com), la custom instance di [gpx.studio](https://github.com/gpxstudio/gpx.studio) di insidegubbio.
