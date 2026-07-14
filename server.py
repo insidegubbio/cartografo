@@ -51,6 +51,18 @@ async def get_style():
         headers={"Access-Control-Allow-Origin": "*"}
     )
 
+@app.get("/tiles/italy")
+async def tilejson():
+    async with httpx.AsyncClient() as client:
+        r = await client.get(f"http://127.0.0.1:{MARTIN_PORT}/italy")
+        data = r.json()
+        data["tiles"] = ["https://cartografo.insidegubbio.com/tiles/italy/{z}/{x}/{y}"]
+        return Response(
+            content=json.dumps(data),
+            media_type="application/json",
+            headers={"Access-Control-Allow-Origin": "*"}
+        )
+
 @app.get("/tiles/{path:path}")
 async def proxy_tiles(path: str):
     async with httpx.AsyncClient() as client:
@@ -63,18 +75,6 @@ async def proxy_tiles(path: str):
             )
         except Exception as e:
             raise HTTPException(status_code=503, detail=str(e))
-            
-@app.get("/tiles/italy")
-async def tilejson():
-    async with httpx.AsyncClient() as client:
-        r = await client.get(f"http://127.0.0.1:{MARTIN_PORT}/italy")
-        data = r.json()
-        data["tiles"] = ["https://cartografo.insidegubbio.com/tiles/italy/{z}/{x}/{y}"]
-        return Response(
-            content=json.dumps(data),
-            media_type="application/json",
-            headers={"Access-Control-Allow-Origin": "*"}
-        )
         
 @app.get("/italy.pmtiles")
 async def serve_pmtiles(request: Request):
