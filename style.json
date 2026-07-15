@@ -27,7 +27,19 @@
       "paint": {
         "fill-color": "hsl(46, 65%, 91%)",
         "fill-pattern": "yellow",
-        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 0, 1, 7, 0.8]
+        "fill-opacity": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          0,
+          1,
+          7,
+          0.8
+        ]
       }
     },
     {
@@ -37,8 +49,36 @@
       "source-layer": "earth",
       "paint": {
         "line-color": "hsla(38, 45%, 55%, 0.35)",
-        "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 3, 10, 6, 16, 10],
-        "line-width": ["interpolate", ["linear"], ["zoom"], 4, 2, 10, 5, 16, 9]
+        "line-blur": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          4,
+          3,
+          10,
+          6,
+          16,
+          10
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          4,
+          2,
+          10,
+          5,
+          16,
+          9
+        ]
       }
     },
     {
@@ -60,8 +100,28 @@
       "paint": {
         "line-blur": 4,
         "line-color": "hsla(195, 0%, 100%, 0.7)",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 13, 6, 18, 16]
-      }
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          13,
+          6,
+          18,
+          16
+        ]
+      },
+      "filter": [
+        "!in",
+        "kind_detail",
+        "river",
+        "stream",
+        "canal",
+        "riverbank"
+      ]
     },
     {
       "id": "River",
@@ -69,12 +129,48 @@
       "source": "protomaps",
       "source-layer": "water",
       "minzoom": 3,
-      "filter": ["in", "kind_detail", "river", "stream", "canal", "riverbank"],
+      "filter": [
+        "in",
+        "kind_detail",
+        "river",
+        "stream",
+        "canal",
+        "riverbank"
+      ],
       "paint": {
-        "line-blur": ["interpolate", ["linear"], ["zoom"], 3, 2, 18, 4],
+        "line-blur": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          2,
+          18,
+          4
+        ],
         "line-color": "hsl(205,56%,73%)",
         "line-pattern": "blue",
-        "line-width": ["interpolate", ["exponential", 1], ["zoom"], 3, 2, 12, 4, 18, 9, 22, 12]
+        "line-width": [
+          "interpolate",
+          [
+            "exponential",
+            1
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          2,
+          12,
+          4,
+          18,
+          9,
+          22,
+          12
+        ]
       }
     },
     {
@@ -82,7 +178,15 @@
       "type": "fill",
       "source": "protomaps",
       "source-layer": "landuse",
-      "filter": ["in", "kind", "wood", "forest", "park", "grass", "meadow"],
+      "filter": [
+        "in",
+        "kind",
+        "wood",
+        "forest",
+        "park",
+        "grass",
+        "meadow"
+      ],
       "paint": {
         "fill-color": "hsl(91, 40%, 70%)",
         "fill-pattern": "green",
@@ -94,11 +198,47 @@
       "type": "line",
       "source": "protomaps",
       "source-layer": "landuse",
-      "filter": ["in", "kind", "wood", "forest", "park", "grass", "meadow"],
+      "filter": [
+        "in",
+        "kind",
+        "wood",
+        "forest",
+        "park",
+        "grass",
+        "meadow"
+      ],
       "paint": {
         "line-color": "hsla(95, 45%, 35%, 0.3)",
-        "line-blur": ["interpolate", ["linear"], ["zoom"], 6, 3, 12, 6, 16, 9],
-        "line-width": ["interpolate", ["linear"], ["zoom"], 6, 1.5, 12, 4, 16, 7]
+        "line-blur": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          6,
+          3,
+          12,
+          6,
+          16,
+          9
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          6,
+          1.5,
+          12,
+          4,
+          16,
+          7
+        ]
       }
     },
     {
@@ -107,7 +247,13 @@
       "source": "protomaps",
       "source-layer": "landuse",
       "minzoom": 8,
-      "filter": ["in", "kind", "grass", "meadow", "scrub"],
+      "filter": [
+        "in",
+        "kind",
+        "grass",
+        "meadow",
+        "scrub"
+      ],
       "paint": {
         "fill-color": "hsl(89, 40%, 78%)",
         "fill-pattern": "green",
@@ -121,11 +267,30 @@
       "source-layer": "landuse",
       "minzoom": 4,
       "maxzoom": 13,
-      "filter": ["in", "kind", "residential", "urban"],
+      "filter": [
+        "in",
+        "kind",
+        "residential",
+        "urban"
+      ],
       "paint": {
         "fill-color": "hsl(60, 24%, 81%)",
         "fill-pattern": "red",
-        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 4, 0.5, 9, 0.4, 13, 0.2]
+        "fill-opacity": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          4,
+          0.5,
+          9,
+          0.4,
+          13,
+          0.2
+        ]
       }
     },
     {
@@ -135,11 +300,40 @@
       "source-layer": "landuse",
       "minzoom": 6,
       "maxzoom": 13,
-      "filter": ["in", "kind", "residential", "urban"],
+      "filter": [
+        "in",
+        "kind",
+        "residential",
+        "urban"
+      ],
       "paint": {
         "line-color": "hsla(30, 40%, 45%, 0.25)",
-        "line-blur": ["interpolate", ["linear"], ["zoom"], 6, 2, 13, 5],
-        "line-width": ["interpolate", ["linear"], ["zoom"], 6, 1, 13, 3]
+        "line-blur": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          6,
+          2,
+          13,
+          5
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          6,
+          1,
+          13,
+          3
+        ]
       }
     },
     {
@@ -148,7 +342,12 @@
       "source": "protomaps",
       "source-layer": "landuse",
       "minzoom": 7,
-      "filter": ["in", "kind", "sand", "beach"],
+      "filter": [
+        "in",
+        "kind",
+        "sand",
+        "beach"
+      ],
       "paint": {
         "fill-color": "hsl(54, 100%, 76%)",
         "fill-opacity": 0.15
@@ -162,7 +361,16 @@
       "minzoom": 13,
       "paint": {
         "fill-color": {
-          "stops": [[13, "hsl(48,25%,73%)"], [16, "hsl(47,32%,77%)"]]
+          "stops": [
+            [
+              13,
+              "hsl(48,25%,73%)"
+            ],
+            [
+              16,
+              "hsl(47,32%,77%)"
+            ]
+          ]
         },
         "fill-pattern": "red",
         "fill-opacity": 1
@@ -185,17 +393,119 @@
       "paint": {
         "line-color": "hsl(0, 0%, 100%)",
         "line-pattern": [
-          "match", ["get", "kind"],
-          ["highway", "motorway"], "red",
+          "match",
+          [
+            "get",
+            "kind"
+          ],
+          [
+            "highway",
+            "motorway"
+          ],
+          "red",
           "white"
         ],
-        "line-opacity": ["interpolate", ["linear"], ["zoom"], 7, 0.25, 14, 0.5, 22, 1],
+        "line-opacity": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          7,
+          0.25,
+          14,
+          0.5,
+          22,
+          1
+        ],
         "line-width": [
-          "interpolate", ["linear"], ["zoom"],
-          6, 1,
-          10, ["match", ["get", "kind"], ["highway", "motorway"], 5, ["trunk"], 3, 2],
-          14, ["match", ["get", "kind"], ["highway", "motorway"], 12, ["trunk"], 6, ["primary"], 10, ["secondary"], 8, ["tertiary"], 6, ["minor"], 4, 2],
-          18, ["match", ["get", "kind"], ["highway", "motorway", "trunk", "primary"], 20, ["secondary"], 16, ["tertiary"], 12, 8]
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          6,
+          1,
+          10,
+          [
+            "match",
+            [
+              "get",
+              "kind"
+            ],
+            [
+              "highway",
+              "motorway"
+            ],
+            5,
+            [
+              "trunk"
+            ],
+            3,
+            2
+          ],
+          14,
+          [
+            "match",
+            [
+              "get",
+              "kind"
+            ],
+            [
+              "highway",
+              "motorway"
+            ],
+            12,
+            [
+              "trunk"
+            ],
+            6,
+            [
+              "primary"
+            ],
+            10,
+            [
+              "secondary"
+            ],
+            8,
+            [
+              "tertiary"
+            ],
+            6,
+            [
+              "minor"
+            ],
+            4,
+            2
+          ],
+          18,
+          [
+            "match",
+            [
+              "get",
+              "kind"
+            ],
+            [
+              "highway",
+              "motorway",
+              "trunk",
+              "primary"
+            ],
+            20,
+            [
+              "secondary"
+            ],
+            16,
+            [
+              "tertiary"
+            ],
+            12,
+            8
+          ]
         ]
       }
     },
@@ -205,11 +515,29 @@
       "source": "protomaps",
       "source-layer": "roads",
       "minzoom": 10,
-      "filter": ["==", "kind", "rail"],
+      "filter": [
+        "==",
+        "kind",
+        "rail"
+      ],
       "paint": {
         "line-blur": 2,
         "line-color": "hsla(0, 0%, 85%, 0.3)",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 2, 16, 8, 22, 22]
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          10,
+          2,
+          16,
+          8,
+          22,
+          22
+        ]
       }
     },
     {
@@ -219,9 +547,27 @@
       "source-layer": "roads",
       "minzoom": 12,
       "layout": {
-        "text-field": ["get", "name"],
-        "text-font": ["Satoshi Regular", "Noto Sans Regular"],
-        "text-size": ["interpolate", ["linear"], ["zoom"], 12, 10, 16, 14],
+        "text-field": [
+          "get",
+          "name"
+        ],
+        "text-font": [
+          "Satoshi Regular",
+          "Noto Sans Regular"
+        ],
+        "text-size": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          12,
+          10,
+          16,
+          14
+        ],
         "symbol-placement": "line",
         "text-max-angle": 30
       },
@@ -237,13 +583,59 @@
       "source": "protomaps",
       "source-layer": "places",
       "layout": {
-        "text-field": ["get", "name"],
-        "text-font": ["Satoshi Regular", "Noto Sans Regular"],
+        "text-field": [
+          "get",
+          "name"
+        ],
+        "text-font": [
+          "Satoshi Regular",
+          "Noto Sans Regular"
+        ],
         "text-size": [
-          "interpolate", ["linear"], ["zoom"],
-          4, ["match", ["get", "kind"], "country", 14, 8],
-          8, ["match", ["get", "kind"], "country", 18, "city", 14, 10],
-          12, ["match", ["get", "kind"], "city", 16, "town", 13, 11]
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          4,
+          [
+            "match",
+            [
+              "get",
+              "kind"
+            ],
+            "country",
+            14,
+            8
+          ],
+          8,
+          [
+            "match",
+            [
+              "get",
+              "kind"
+            ],
+            "country",
+            18,
+            "city",
+            14,
+            10
+          ],
+          12,
+          [
+            "match",
+            [
+              "get",
+              "kind"
+            ],
+            "city",
+            16,
+            "town",
+            13,
+            11
+          ]
         ],
         "text-anchor": "center"
       },
@@ -251,12 +643,27 @@
         "text-color": "#2C3229",
         "text-halo-color": "rgba(255,255,255,0.85)",
         "text-halo-width": 1.5,
-        "text-opacity": ["interpolate", ["linear"], ["zoom"], 3, 0.8, 8, 1]
+        "text-opacity": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          0.8,
+          8,
+          1
+        ]
       }
     }
   ],
   "bearing": 0,
   "pitch": 0,
-  "center": [12.4964, 41.9028],
+  "center": [
+    12.4964,
+    41.9028
+  ],
   "zoom": 6
 }
