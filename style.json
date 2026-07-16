@@ -2,10 +2,10 @@
   "version": 8,
   "name": "Aquarelle",
   "sources": {
-    "protomaps": {
+    "openmaptiles": {
       "type": "vector",
-      "url": "https://cartografo.insidegubbio.com/tiles/italy",
-      "attribution": "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a>"
+      "url": "https://tiles.openfreemap.org/planet",
+      "attribution": "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a> contributors &copy; <a href='https://openmaptiles.org'>OpenMapTiles</a>"
     }
   },
   "sprite": "https://cartografo.insidegubbio.com/sprites/sprite",
@@ -15,76 +15,15 @@
       "id": "Background",
       "type": "background",
       "paint": {
-        "background-color": "hsl(205, 57%, 80%)",
-        "background-opacity": 1
-      }
-    },
-    {
-      "id": "Land",
-      "type": "fill",
-      "source": "protomaps",
-      "source-layer": "earth",
-      "paint": {
-        "fill-color": "hsl(46, 65%, 91%)",
-        "fill-pattern": "yellow",
-        "fill-opacity": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          0,
-          1,
-          7,
-          0.8
-        ]
-      }
-    },
-    {
-      "id": "Land edge bleed",
-      "type": "line",
-      "source": "protomaps",
-      "source-layer": "earth",
-      "paint": {
-        "line-color": "hsla(38, 45%, 55%, 0.35)",
-        "line-blur": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          4,
-          3,
-          10,
-          6,
-          16,
-          10
-        ],
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          4,
-          2,
-          10,
-          5,
-          16,
-          9
-        ]
+        "background-color": "hsl(46, 65%, 91%)",
+        "background-opacity": 1,
+        "background-pattern": "yellow"
       }
     },
     {
       "id": "Water",
       "type": "fill",
-      "source": "protomaps",
+      "source": "openmaptiles",
       "source-layer": "water",
       "paint": {
         "fill-color": "hsl(205, 57%, 80%)",
@@ -95,7 +34,7 @@
     {
       "id": "Water outline",
       "type": "line",
-      "source": "protomaps",
+      "source": "openmaptiles",
       "source-layer": "water",
       "paint": {
         "line-blur": 4,
@@ -113,29 +52,20 @@
           18,
           16
         ]
-      },
-      "filter": [
-        "!in",
-        "kind_detail",
-        "river",
-        "stream",
-        "canal",
-        "riverbank"
-      ]
+      }
     },
     {
       "id": "River",
       "type": "line",
-      "source": "protomaps",
-      "source-layer": "water",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
       "minzoom": 3,
       "filter": [
         "in",
-        "kind_detail",
+        "class",
         "river",
         "stream",
-        "canal",
-        "riverbank"
+        "canal"
       ],
       "paint": {
         "line-blur": [
@@ -176,16 +106,13 @@
     {
       "id": "Wood",
       "type": "fill",
-      "source": "protomaps",
-      "source-layer": "landuse",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
       "filter": [
         "in",
-        "kind",
+        "class",
         "wood",
-        "forest",
-        "park",
-        "grass",
-        "meadow"
+        "grass"
       ],
       "paint": {
         "fill-color": "hsl(91, 40%, 70%)",
@@ -196,16 +123,13 @@
     {
       "id": "Wood edge bleed",
       "type": "line",
-      "source": "protomaps",
-      "source-layer": "landuse",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
       "filter": [
         "in",
-        "kind",
+        "class",
         "wood",
-        "forest",
-        "park",
-        "grass",
-        "meadow"
+        "grass"
       ],
       "paint": {
         "line-color": "hsla(95, 45%, 35%, 0.3)",
@@ -244,15 +168,13 @@
     {
       "id": "Grass",
       "type": "fill",
-      "source": "protomaps",
-      "source-layer": "landuse",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
       "minzoom": 8,
       "filter": [
-        "in",
-        "kind",
-        "grass",
-        "meadow",
-        "scrub"
+        "==",
+        "class",
+        "grass"
       ],
       "paint": {
         "fill-color": "hsl(89, 40%, 78%)",
@@ -263,15 +185,14 @@
     {
       "id": "Residential",
       "type": "fill",
-      "source": "protomaps",
+      "source": "openmaptiles",
       "source-layer": "landuse",
       "minzoom": 4,
       "maxzoom": 13,
       "filter": [
         "in",
-        "kind",
-        "residential",
-        "urban"
+        "class",
+        "residential"
       ],
       "paint": {
         "fill-color": "hsl(60, 24%, 81%)",
@@ -296,15 +217,14 @@
     {
       "id": "Residential edge bleed",
       "type": "line",
-      "source": "protomaps",
+      "source": "openmaptiles",
       "source-layer": "landuse",
       "minzoom": 6,
       "maxzoom": 13,
       "filter": [
         "in",
-        "kind",
-        "residential",
-        "urban"
+        "class",
+        "residential"
       ],
       "paint": {
         "line-color": "hsla(30, 40%, 45%, 0.25)",
@@ -339,14 +259,13 @@
     {
       "id": "Sand",
       "type": "fill",
-      "source": "protomaps",
-      "source-layer": "landuse",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
       "minzoom": 7,
       "filter": [
-        "in",
-        "kind",
-        "sand",
-        "beach"
+        "==",
+        "class",
+        "sand"
       ],
       "paint": {
         "fill-color": "hsl(54, 100%, 76%)",
@@ -356,8 +275,8 @@
     {
       "id": "Building",
       "type": "fill",
-      "source": "protomaps",
-      "source-layer": "buildings",
+      "source": "openmaptiles",
+      "source-layer": "building",
       "minzoom": 13,
       "paint": {
         "fill-color": {
@@ -387,8 +306,8 @@
     {
       "id": "Road network",
       "type": "line",
-      "source": "protomaps",
-      "source-layer": "roads",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
       "minzoom": 7,
       "paint": {
         "line-color": "hsl(0, 0%, 100%)",
@@ -396,10 +315,9 @@
           "match",
           [
             "get",
-            "kind"
+            "class"
           ],
           [
-            "highway",
             "motorway"
           ],
           "red",
@@ -435,10 +353,9 @@
             "match",
             [
               "get",
-              "kind"
+              "class"
             ],
             [
-              "highway",
               "motorway"
             ],
             5,
@@ -453,10 +370,9 @@
             "match",
             [
               "get",
-              "kind"
+              "class"
             ],
             [
-              "highway",
               "motorway"
             ],
             12,
@@ -487,10 +403,9 @@
             "match",
             [
               "get",
-              "kind"
+              "class"
             ],
             [
-              "highway",
               "motorway",
               "trunk",
               "primary"
@@ -512,12 +427,12 @@
     {
       "id": "Railway",
       "type": "line",
-      "source": "protomaps",
-      "source-layer": "roads",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
       "minzoom": 10,
       "filter": [
         "==",
-        "kind",
+        "class",
         "rail"
       ],
       "paint": {
@@ -543,8 +458,8 @@
     {
       "id": "Road labels",
       "type": "symbol",
-      "source": "protomaps",
-      "source-layer": "roads",
+      "source": "openmaptiles",
+      "source-layer": "transportation_name",
       "minzoom": 12,
       "layout": {
         "text-field": [
@@ -580,8 +495,8 @@
     {
       "id": "Place labels",
       "type": "symbol",
-      "source": "protomaps",
-      "source-layer": "places",
+      "source": "openmaptiles",
+      "source-layer": "place",
       "layout": {
         "text-field": [
           "get",
@@ -604,7 +519,7 @@
             "match",
             [
               "get",
-              "kind"
+              "class"
             ],
             "country",
             14,
@@ -615,7 +530,7 @@
             "match",
             [
               "get",
-              "kind"
+              "class"
             ],
             "country",
             18,
@@ -628,7 +543,7 @@
             "match",
             [
               "get",
-              "kind"
+              "class"
             ],
             "city",
             16,
