@@ -1,0 +1,123 @@
+                   insidegubbio Source Available License
+                          Version 1.0, August 2026
+
+ Copyright (C) 2026 insidegubbio <ciao@insidegubbio.com>
+ Everyone is permitted to read and share verbatim copies of this
+ license document, but changing it is not allowed.
+
+                              Preamble
+
+  The insidegubbio Source Available License is a license for software
+whose source code is made publicly available for transparency, study,
+and personal use.
+
+  You are free to read the code, fork it, run it at home, learn from
+it, and modify it for your own private use. What you cannot do is use
+it to make money, offer it as a service to others, or build a product
+on top of it without our permission.
+
+  Personal, non-commercial use is welcomed and encouraged. If you want
+to use this software for a commercial purpose, please get in touch.
+We are open to agreements.
+
+                        TERMS AND CONDITIONS
+
+  0. Definitions.
+
+  "This License" refers to version 1.0 of the insidegubbio Source
+Available License.
+
+  "The Software" refers to the source code, documentation, and all
+associated files distributed under this License.
+
+  "insidegubbio" refers to the copyright holder, reachable at
+ciao@insidegubbio.com.
+
+  "You" refers to any individual or legal entity accessing or using
+the Software in any way.
+
+  "Non-Commercial Use" means any use of the Software that does not
+involve commercial advantage or monetary compensation, directly or
+indirectly. Running the Software on your own hardware for personal or
+home lab purposes, forking the repository to study or experiment, and
+contributing back to the project are all considered Non-Commercial Use.
+
+  "Commercial Use" means any use of the Software intended for or
+resulting in commercial advantage or monetary compensation, including
+but not limited to: incorporating the Software into a paid or free
+product offered to third parties, using the Software to provide
+services to others, and using the Software within a business for
+operational purposes.
+
+  1. What You Can Do.
+
+  You are free to:
+
+  (a) read, study, and fork the Software for personal or home lab use;
+
+  (b) modify the Software for your own private, non-commercial purposes;
+
+  (c) share the Software with others, provided this License is included
+      and no Commercial Use is involved;
+
+  (d) contribute improvements back to the original project.
+
+  2. What You Cannot Do Without Permission.
+
+  The following require prior written authorization from insidegubbio:
+
+  (a) any Commercial Use of the Software, in whole or in part;
+
+  (b) offering the Software or any derivative of it as a service to
+      third parties, whether for a fee or free of charge;
+
+  (c) incorporating the Software into a product or platform distributed
+      to others for commercial purposes;
+
+  (d) using the insidegubbio name or trademarks to promote or endorse
+      any unauthorized product or service.
+
+  To request authorization, write to: ciao@insidegubbio.com
+
+  3. Attribution.
+
+  Any redistribution or authorized use must retain this License and
+include the following notice in a reasonably visible location:
+
+      Based on insidegubbio software (insidegubbio.com)
+
+  4. No Warranty.
+
+  The Software is provided "as is", without warranty of any kind,
+express or implied, including but not limited to the warranties of
+merchantability, fitness for a particular purpose, and non-infringement.
+In no event shall insidegubbio be liable for any claim, damages, or
+other liability arising from, out of, or in connection with the
+Software or the use or other dealings in the Software.
+
+  5. Termination.
+
+  Any violation of the terms of this License automatically and
+immediately terminates all rights granted to you. Upon termination,
+you must cease all use of the Software and destroy any copies in your
+possession or control.
+
+  6. Governing Law.
+
+  This License is governed by the laws of Italy. Any disputes arising
+from or in connection with this License shall be subject to the
+exclusive jurisdiction of the courts of Perugia, Italy.
+
+                     END OF TERMS AND CONDITIONS
+
+            How to Apply This License to Your Project
+
+  Place this file as LICENSE in the root of your repository and add
+the following notice to the top of each source file:
+
+      Copyright (C) 2026 insidegubbio
+      This file is licensed under the insidegubbio Source Available
+      License v1.0. Personal use is welcome. Commercial
+      use requires written permission. See LICENSE or contact
+      ciao@insidegubbio.com.
+
