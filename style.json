@@ -298,16 +298,15 @@
       "source-layer": "transportation",
       "minzoom": 7,
       "paint": {
-        "line-color": "hsl(0, 0%, 100%)",
-        "line-pattern": [
+        "line-color": [
           "match", ["get", "class"],
-          ["motorway"], "red",
-          "white"
+          ["motorway", "trunk"], "hsl(10, 60%, 85%)",
+          "hsl(0, 0%, 100%)"
         ],
         "line-opacity": [
           "interpolate", ["linear"], ["zoom"],
-          7, 0.25,
-          14, 0.5,
+          7, 0.7,
+          12, 0.85,
           22, 1
         ],
         "line-width": [
