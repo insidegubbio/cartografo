@@ -170,6 +170,7 @@
       "filter": ["in", "class", "residential"],
       "paint": {
         "fill-color": "hsl(60, 24%, 81%)",
+        "fill-pattern": "red",
         "fill-opacity": [
           "interpolate", ["linear"], ["zoom"],
           4, 0.5,
@@ -244,6 +245,50 @@
           12, 0.18,
           16, 0.10
         ]
+      }
+    },
+    {
+      "id": "Road shadow",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 7,
+      "paint": {
+        "line-color": "hsl(30, 20%, 60%)",
+        "line-opacity": [
+          "interpolate", ["linear"], ["zoom"],
+          7, 0.3,
+          12, 0.5,
+          16, 0.3
+        ],
+        "line-width": [
+          "interpolate", ["linear"], ["zoom"],
+          6, 2,
+          10, [
+            "match", ["get", "class"],
+            ["motorway"], 7,
+            ["trunk"], 5,
+            3
+          ],
+          14, [
+            "match", ["get", "class"],
+            ["motorway"], 15,
+            ["trunk"], 9,
+            ["primary"], 13,
+            ["secondary"], 11,
+            ["tertiary"], 8,
+            ["minor"], 6,
+            4
+          ],
+          18, [
+            "match", ["get", "class"],
+            ["motorway", "trunk", "primary"], 24,
+            ["secondary"], 20,
+            ["tertiary"], 15,
+            10
+          ]
+        ],
+        "line-blur": 2
       }
     },
     {
